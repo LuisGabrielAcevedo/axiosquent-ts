@@ -1,0 +1,25 @@
+{
+  "name": "axiosquent-ts",
+  "version": "1.0.7",
+  "description": "",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/musicaga/axiosquent-ts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/musicaga/axiosquent-ts/issues"
+  },
+  "homepage": "https://github.com/musicaga/axiosquent-ts#readme",
+  "dependencies": {
+    "axios": "^0.19.0"
+  }
+}
