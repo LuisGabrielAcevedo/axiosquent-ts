@@ -8,7 +8,7 @@ export declare abstract class Model {
     resource: string;
     private id;
     private attributes;
-    baseUrl: string;
+    base_url: string;
     static getHttpClient(): HttpClient;
     static all(page?: number, perPage?: number): Promise<any>;
     static find(id: number): Promise<any>;
@@ -20,8 +20,8 @@ export declare abstract class Model {
     static option(queryParameter: string, value: string): Builder;
     static setUrl(url: string, action?: string): Builder;
     static header(name: string, value: string): Builder;
-    abstract getBaseUrl(): string;
-    abstract getHeaders(): AxiosquentHeaders;
+    abstract baseUrl(): string;
+    abstract headers(): AxiosquentHeaders;
     getResource: () => string;
     getApiId: () => number | undefined;
     aspects: () => Promise<any>;

@@ -55,7 +55,7 @@ var Model = /** @class */ (function () {
             });
         }); };
         this.attributes = new attributes_map_1.AttributesMap();
-        this.baseUrl = this.getBaseUrl();
+        this.base_url = this.baseUrl();
         if (!Model.httpClient) {
             Model.httpClient = new axios_http_client_1.AxiosHttpClient();
         }
@@ -95,8 +95,8 @@ var Model = /** @class */ (function () {
         return new builder_1.Builder(this).header(name, value);
     };
     Model.prototype.initHttpClient = function () {
-        Model.httpClient.setBaseUrl(this.getBaseUrl());
-        Model.httpClient.setHeaders(this.getHeaders());
+        Model.httpClient.setBaseUrl(this.baseUrl());
+        Model.httpClient.setHeaders(this.headers());
     };
     Model.prototype.save = function () {
         return __awaiter(this, void 0, void 0, function () {
