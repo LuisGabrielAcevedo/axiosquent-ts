@@ -63,6 +63,11 @@ export abstract class Model {
     public static header(name: string, value: string): Builder {
         return new Builder(this).header(name, value);
     }
+
+    public static noPagination(): Builder {
+        return new Builder(this).noPagination();
+    }
+
     public abstract baseUrl(): string;
     public abstract headers(): AxiosquentHeaders;
 

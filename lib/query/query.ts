@@ -16,6 +16,7 @@ export class Query {
     protected options: Option[];
     protected sort: SortSpec[];
     protected url: UrlSpec | null;
+    protected noPagination: boolean;
 
     constructor(resource: string) {
         this.resource = resource;
@@ -26,6 +27,7 @@ export class Query {
         this.options = [];
         this.sort = [];
         this.url = null;
+        this.noPagination = false;
     }
 
     public addFilter = (filter: FilterSpec): void => {
@@ -52,8 +54,12 @@ export class Query {
         this.options.push(option);
     }
 
-    public addUrl(url: UrlSpec): void {
+    public setUrl(url: UrlSpec): void {
         this.url = url;
+    }
+
+    public setNoPagination(value: boolean): void {
+        this.noPagination = value;
     }
 
     public setPaginationSpec(paginationSpec: PaginationSpec): void {
@@ -116,9 +122,13 @@ export class Query {
     }
 
     protected addPaginationParameters(searchParams: QueryParam[]): void {
-        if (this.pagination.page) {
-            for (const param of this.pagination.getPaginationParameters()) {
-                searchParams.push(new QueryParam(param.name, param.value));
+        if (this.noPagination) {
+            searchParams.push(new QueryParam('no_pagination', true));
+        } else {
+            if (this.pagination.page) {
+                for (const param of this.pagination.getPaginationParameters()) {
+                    searchParams.push(new QueryParam(param.name, param.value));
+                }
             }
         }
     }
@@ -145,8 +155,8 @@ export class Query {
         this.addSortParameters(searchParams);
         this.addIncludeParameters(searchParams);
         this.addOptionsParameters(searchParams);
-        this.addPaginationParameters(searchParams);
         this.addOrFilterParameters(searchParams);
+        this.addPaginationParameters(searchParams);
 
         let paramString = '';
 
